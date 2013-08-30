@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27F7D21117D131EA00FA2553 /* ThreeCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F7D21017D131EA00FA2553 /* ThreeCardMatchingGame.m */; };
+		27F7D21417D1388900FA2553 /* BaseMatchGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F7D21317D1388900FA2553 /* BaseMatchGame.m */; };
 		27FE304D17CE8F0600B8E958 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FE304C17CE8F0600B8E958 /* UIKit.framework */; };
 		27FE304F17CE8F0600B8E958 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FE304E17CE8F0600B8E958 /* Foundation.framework */; };
 		27FE305117CE8F0600B8E958 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FE305017CE8F0600B8E958 /* CoreGraphics.framework */; };
@@ -22,10 +24,14 @@
 		27FE307517CE8FF500B8E958 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE307417CE8FF500B8E958 /* Deck.m */; };
 		27FE307817CE930000B8E958 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE307717CE930000B8E958 /* PlayingCard.m */; };
 		27FE307B17CE976500B8E958 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE307A17CE976500B8E958 /* PlayingCardDeck.m */; };
-		27FE307E17CFDFAF00B8E958 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE307D17CFDFAF00B8E958 /* CardMatchingGame.m */; };
+		27FE307E17CFDFAF00B8E958 /* TwoCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FE307D17CFDFAF00B8E958 /* TwoCardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27F7D20F17D131EA00FA2553 /* ThreeCardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThreeCardMatchingGame.h; path = Model/ThreeCardMatchingGame.h; sourceTree = "<group>"; };
+		27F7D21017D131EA00FA2553 /* ThreeCardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThreeCardMatchingGame.m; path = Model/ThreeCardMatchingGame.m; sourceTree = "<group>"; };
+		27F7D21217D1388900FA2553 /* BaseMatchGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseMatchGame.h; path = Model/BaseMatchGame.h; sourceTree = "<group>"; };
+		27F7D21317D1388900FA2553 /* BaseMatchGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseMatchGame.m; path = Model/BaseMatchGame.m; sourceTree = "<group>"; };
 		27FE304917CE8F0600B8E958 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FE304C17CE8F0600B8E958 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		27FE304E17CE8F0600B8E958 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,8 +56,8 @@
 		27FE307717CE930000B8E958 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCard.m; path = Model/PlayingCard.m; sourceTree = "<group>"; };
 		27FE307917CE976500B8E958 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		27FE307A17CE976500B8E958 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
-		27FE307C17CFDFAF00B8E958 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
-		27FE307D17CFDFAF00B8E958 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
+		27FE307C17CFDFAF00B8E958 /* TwoCardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoCardMatchingGame.h; sourceTree = "<group>"; };
+		27FE307D17CFDFAF00B8E958 /* TwoCardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoCardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +132,6 @@
 		27FE307217CE8FDC00B8E958 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				27FE307C17CFDFAF00B8E958 /* CardMatchingGame.h */,
-				27FE307D17CFDFAF00B8E958 /* CardMatchingGame.m */,
 				27FE306F17CE8FD400B8E958 /* Card.h */,
 				27FE307017CE8FD400B8E958 /* Card.m */,
 				27FE307317CE8FF500B8E958 /* Deck.h */,
@@ -136,6 +140,12 @@
 				27FE307717CE930000B8E958 /* PlayingCard.m */,
 				27FE307917CE976500B8E958 /* PlayingCardDeck.h */,
 				27FE307A17CE976500B8E958 /* PlayingCardDeck.m */,
+				27F7D20F17D131EA00FA2553 /* ThreeCardMatchingGame.h */,
+				27F7D21017D131EA00FA2553 /* ThreeCardMatchingGame.m */,
+				27FE307C17CFDFAF00B8E958 /* TwoCardMatchingGame.h */,
+				27FE307D17CFDFAF00B8E958 /* TwoCardMatchingGame.m */,
+				27F7D21217D1388900FA2553 /* BaseMatchGame.h */,
+				27F7D21317D1388900FA2553 /* BaseMatchGame.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -214,7 +224,9 @@
 				27FE307517CE8FF500B8E958 /* Deck.m in Sources */,
 				27FE307817CE930000B8E958 /* PlayingCard.m in Sources */,
 				27FE307B17CE976500B8E958 /* PlayingCardDeck.m in Sources */,
-				27FE307E17CFDFAF00B8E958 /* CardMatchingGame.m in Sources */,
+				27FE307E17CFDFAF00B8E958 /* TwoCardMatchingGame.m in Sources */,
+				27F7D21117D131EA00FA2553 /* ThreeCardMatchingGame.m in Sources */,
+				27F7D21417D1388900FA2553 /* BaseMatchGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +349,7 @@
 				27FE306E17CE8F0600B8E958 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,15 +1,15 @@
 //
-//  CardMatchingGame.h
+//  BaseMatchGame.h
 //  Matchismo
 //
-//  Created by Kyle Rogers on 8/29/13.
+//  Created by Kyle Rogers on 8/30/13.
 //  Copyright (c) 2013 Kyle Rogers. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "Deck.h"
 
-@interface CardMatchingGame : NSObject
+@interface BaseMatchGame : NSObject
 
 - (id)initWithCardCount:(NSUInteger)cardCount
               usingDeck:(Deck *)deck;
@@ -18,6 +18,7 @@
 
 - (Card *)cardAtIndex:(NSUInteger)index;
 
-@property (nonatomic, readonly) int score;
+@property (strong, nonatomic) NSMutableArray *cards;
+@property (nonatomic) int score;
 
 @end

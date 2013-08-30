@@ -8,13 +8,15 @@
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
-#import "CardMatchingGame.h"
+#import "TwoCardMatchingGame.h"
+#import "ThreeCardMatchingGame.h"
+#import "BaseMatchGame.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) BaseMatchGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 
@@ -22,9 +24,9 @@
 
 @implementation CardGameViewController
 
-- (CardMatchingGame *)game
+- (BaseMatchGame *)game
 {
-    if(!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+    if(!_game) _game = [[TwoCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                          usingDeck:[[PlayingCardDeck alloc] init]];
     return _game;
 }
@@ -57,6 +59,26 @@
     _flipCount = flipCount;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
     NSLog(@"flips updated to %d", self.flipCount);
+}
+
+- (IBAction)changeGame:(UISegmentedControl *)sender {
+    /*
+    if(sender.selectedSegmentIndex == 0) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+    usingDeck:[[PlayingCardDeck alloc] init]];
+    
+    } else {
+        _game = [[ThreeCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+    usingDeck:[[PlayingCardDeck alloc] init]];
+    
+    }*/
+    
+}
+
+- (IBAction)dealCards:(UIButton *)sender {
+    _game = nil;
+    [self setFlipCount:0];
+    [self updateUI];
 }
 
 - (IBAction)flipCard:(UIButton *)sender
