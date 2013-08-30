@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Deck.h"
 #import "BaseMatchGame.h"
 
 @interface ThreeCardMatchingGame : BaseMatchGame
-@property (nonatomic, readonly) int score;
 @end

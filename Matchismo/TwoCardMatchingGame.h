@@ -10,5 +10,4 @@
 #import "BaseMatchGame.h"
 
 @interface TwoCardMatchingGame : BaseMatchGame
-@property (nonatomic, readonly) int score;
 @end

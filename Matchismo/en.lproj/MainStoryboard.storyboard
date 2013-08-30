@@ -320,6 +320,7 @@
                     </view>
                     <connections>
                         <outlet property="flipsLabel" destination="1j1-21-1Su" id="JE4-aU-ldE"/>
+                        <outlet property="gameSelector" destination="Twj-lg-O0r" id="7W3-wm-35j"/>
                         <outlet property="messageLabel" destination="yO1-uo-zJv" id="4vZ-db-ozl"/>
                         <outlet property="scoreLabel" destination="uiX-Mf-zcf" id="SbM-Fh-MKV"/>
                         <outletCollection property="cardButtons" destination="9g7-ib-FZ9" id="LOb-da-pVJ"/>
@@ -353,6 +354,7 @@
                 <relationship kind="action" name="dealCards:" candidateClass="UIButton"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="gameSelector" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scoreLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="cardButtons" candidateClass="UIButton"/>

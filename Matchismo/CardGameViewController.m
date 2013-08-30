@@ -19,6 +19,7 @@
 @property (strong, nonatomic) BaseMatchGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameSelector;
 
 @end
 
@@ -26,8 +27,15 @@
 
 - (BaseMatchGame *)game
 {
-    if(!_game) _game = [[TwoCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+    if(!_game) {
+        if(self.gameSelector.selectedSegmentIndex == 0){
+        _game = [[TwoCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
                                                          usingDeck:[[PlayingCardDeck alloc] init]];
+        } else {
+            _game = [[ThreeCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                         usingDeck:[[PlayingCardDeck alloc] init]];
+        }
+    }
     return _game;
 }
 
@@ -62,17 +70,9 @@
 }
 
 - (IBAction)changeGame:(UISegmentedControl *)sender {
-    /*
-    if(sender.selectedSegmentIndex == 0) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-    usingDeck:[[PlayingCardDeck alloc] init]];
-    
-    } else {
-        _game = [[ThreeCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-    usingDeck:[[PlayingCardDeck alloc] init]];
-    
-    }*/
-    
+    _game = nil;
+    [self setFlipCount:0];
+    [self updateUI];    
 }
 
 - (IBAction)dealCards:(UIButton *)sender {

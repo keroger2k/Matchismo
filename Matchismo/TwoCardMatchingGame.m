@@ -9,7 +9,7 @@
 #import "TwoCardMatchingGame.h"
 
 @interface TwoCardMatchingGame()
-@property (nonatomic) int score;
+
 @end
 
 

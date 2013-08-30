@@ -9,7 +9,7 @@
 #import "ThreeCardMatchingGame.h"
 
 @interface ThreeCardMatchingGame()
-@property (nonatomic) int score;
+
 @end
 
 
@@ -22,7 +22,7 @@
 }
 
 #define FLIP_COST 1
-#define MATCH_BONUS 4
+#define MATCH_BONUS 8
 #define MISMATCH_PENALTY 2
 
 - (void)flipCardAtIndex:(NSUInteger)index
