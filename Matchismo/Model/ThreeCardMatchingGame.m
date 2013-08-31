@@ -28,20 +28,29 @@
 - (void)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
+    NSMutableArray *cardsInPlay = [[NSMutableArray alloc] init];
     
     if(!card.isUnplayable) {
         if(!card.isFaceUp){
             for(Card *otherCard in self.cards) {
                 if(otherCard.isFaceUp && !otherCard.isUnplayable) {
-                    int matchScore = [card match:@[otherCard]];
-                    if(matchScore){
-                        otherCard.unplayable = YES;
-                        card.unplayable = YES;
-                        self.score += matchScore * MATCH_BONUS;
-                    } else {
-                        otherCard.faceUp = NO;
-                        self.score -= MISMATCH_PENALTY;
-                    }
+                    [cardsInPlay addObject:otherCard];
+                }
+            }
+            
+            if([cardsInPlay count] == 2) {
+                int matchScore = [card match:cardsInPlay];
+                Card *cardOne = cardsInPlay[0];
+                Card *cardTwo = cardsInPlay[1];
+                if(matchScore){
+                    cardOne.unplayable = YES;
+                    cardTwo.unplayable = YES;
+                    card.unplayable = YES;
+                    self.score += matchScore * MATCH_BONUS;
+                } else {
+                    cardOne.faceUp = NO;
+                    cardTwo.faceUp = NO;
+                    self.score -= MISMATCH_PENALTY;
                 }
             }
             self.score -= FLIP_COST;

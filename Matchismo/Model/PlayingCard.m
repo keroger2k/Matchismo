@@ -14,13 +14,28 @@
 {
     int score = 0;
     
-    if([otherCards count] == 1) {
-        PlayingCard *otherCard = [otherCards lastObject];
-        if([otherCard.suit isEqualToString:self.suit]) {
-            score = 1;
-        } else if (otherCard.rank == self.rank) {
+    if([otherCards count] >= 1) {
+        
+        int rankMatches = 0;
+        int suitMatches = 0;
+        
+        for(int i = 0; i < [otherCards count]; i++) {
+            PlayingCard *otherCard = otherCards[i];
+            if([self.suit isEqualToString:otherCard.suit]) {
+                suitMatches += 1;
+            } else if (self.rank == otherCard.rank) {
+                rankMatches += 1;
+            }
+        }
+        
+        if(rankMatches == [otherCards count]){
             score = 4;
         }
+
+        if(suitMatches == [otherCards count]) {
+            score = 1;
+        }
+    
     }
     return score;
 }
