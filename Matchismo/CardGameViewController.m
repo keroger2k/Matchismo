@@ -25,6 +25,16 @@
 
 @implementation CardGameViewController
 
+- (id)init
+{
+    self = [super init];
+    if(self) {
+    
+    }
+    [self updateUI];
+    return self;
+}
+
 - (BaseMatchGame *)game
 {
     if(!_game) {
@@ -42,11 +52,11 @@
 - (void)setCardButtons:(NSArray *)cardButtons
 {
     _cardButtons = cardButtons;
+    [self updateUI];
 }
 
 - (void)updateUI
 {
-    
     for(UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
@@ -54,7 +64,11 @@
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
-    
+        if(card.isFaceUp){
+            [cardButton setImage:[[UIImage alloc] init] forState:UIControlStateNormal];
+        } else {
+            [cardButton setImage:[UIImage imageNamed:@"cardback.png"] forState:UIControlStateNormal];
+        }
     }
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score %d", self.game.score];
