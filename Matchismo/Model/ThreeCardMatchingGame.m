@@ -37,7 +37,7 @@
                     [cardsInPlay addObject:otherCard];
                 }
             }
-            
+            int messageCount = [self.messenger count];
             if([cardsInPlay count] == 2) {
                 int matchScore = [card match:cardsInPlay];
                 Card *cardOne = cardsInPlay[0];
@@ -47,12 +47,21 @@
                     cardTwo.unplayable = YES;
                     card.unplayable = YES;
                     self.score += matchScore * MATCH_BONUS;
+                    [self.messenger addObject:[NSString stringWithFormat:@"Matched %@ & %@ & %@ for %d points",
+                                               cardOne.contents, cardTwo.contents, card.contents, matchScore * MATCH_BONUS]];
                 } else {
                     cardOne.faceUp = NO;
                     cardTwo.faceUp = NO;
                     self.score -= MISMATCH_PENALTY;
+                    [self.messenger addObject:[NSString stringWithFormat:@"Mis-Matched %@ & %@ & %@ for -%d points",
+                                               cardOne.contents, cardTwo.contents, card.contents, MISMATCH_PENALTY]];
                 }
             }
+            
+            if(messageCount == [self.messenger count]) {
+                [self.messenger addObject:[NSString stringWithFormat:@"Flipped %@", card.contents]];
+            }
+            
             self.score -= FLIP_COST;
         }
         card.faceUp = !card.isFaceUp;

@@ -16,6 +16,11 @@
     return _cards;
 }
 
+- (NSMutableArray *)messenger
+{
+    if(!_messenger) _messenger = [[NSMutableArray alloc] init];
+    return _messenger;
+}
 
 - (id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck
 {

@@ -72,6 +72,7 @@
     }
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score %d", self.game.score];
+    self.messageLabel.text = [self.game.messenger lastObject];
     
     
 }
@@ -80,7 +81,6 @@
 {
     _flipCount = flipCount;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
-    NSLog(@"flips updated to %d", self.flipCount);
 }
 
 - (IBAction)changeGame:(UISegmentedControl *)sender {

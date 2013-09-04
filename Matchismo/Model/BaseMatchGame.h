@@ -20,5 +20,7 @@
 
 @property (strong, nonatomic) NSMutableArray *cards;
 @property (nonatomic) int score;
+@property (strong, nonatomic) NSMutableArray *messenger;
+
 
 @end
