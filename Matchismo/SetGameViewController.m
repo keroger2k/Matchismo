@@ -10,6 +10,7 @@
 #import "BaseMatchGame.h"
 #import "SetCardDeck.h"
 #import "SetCardMatchingGame.h"
+#import "SetCard.h"
 
 @interface SetGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -17,6 +18,16 @@
 @end
 
 @implementation SetGameViewController
+
+- (id)init
+{
+    self = [super init];
+    if(self) {
+        
+    }
+    [self updateUI];
+    return self;
+}
 
 - (BaseMatchGame *)game
 {
@@ -31,8 +42,11 @@
 {
     for(UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+        if ([card isKindOfClass:[SetCard class]]){
+            [cardButton setAttributedTitle:[(SetCard *)card cardFace] forState:UIControlStateNormal];
+        } else {
+            [cardButton setAttributedTitle:[[NSMutableAttributedString alloc] initWithString:card.contents] forState:UIControlStateNormal];
+        }
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
@@ -42,6 +56,10 @@
     //self.messageLabel.text = [self.game.messenger lastObject];
     
     
+}
+
+- (void)viewDidLoad{
+    [self updateUI];
 }
 
 
