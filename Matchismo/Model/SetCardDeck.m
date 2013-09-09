@@ -25,7 +25,6 @@
                         card.color = color;
                         card.shape = shape;
                         card.shade = shade;
-                        //card.faceUp = TRUE;
                         [self addCard:card atTop:YES];
                     }
                 }

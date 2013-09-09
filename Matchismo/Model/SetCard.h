@@ -18,7 +18,6 @@
 + (NSArray *)validShapes;
 + (NSArray *)validColors;
 + (NSArray *)validShades;
-- (NSAttributedString *)cardFace;
 + (NSUInteger)maxRank;
 
 @end
