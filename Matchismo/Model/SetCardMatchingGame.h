@@ -1,12 +1,13 @@
 //
-//  CardMatchingGame.h
+//  SetCardMatchingGame.h
 //  Matchismo
 //
-//  Created by Kyle Rogers on 8/29/13.
+//  Created by Kyle Rogers on 9/8/13.
 //  Copyright (c) 2013 Kyle Rogers. All rights reserved.
 //
 
 #import "BaseMatchGame.h"
 
-@interface TwoCardMatchingGame : BaseMatchGame
+@interface SetCardMatchingGame : BaseMatchGame
+
 @end

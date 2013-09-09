@@ -29,7 +29,7 @@
 {
     self = [super init];
     if(self) {
-    
+        self.title = @"Name me!";
     }
     [self updateUI];
     return self;
