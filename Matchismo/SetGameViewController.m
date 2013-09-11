@@ -13,8 +13,12 @@
 #import "SetCard.h"
 
 @interface SetGameViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+@property (nonatomic) int flipCount;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) BaseMatchGame *game;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @end
 
 @implementation SetGameViewController
@@ -56,8 +60,8 @@
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
     }
     
-    //self.scoreLabel.text = [NSString stringWithFormat:@"Score %d", self.game.score];
-    //self.messageLabel.text = [self.game.messenger lastObject];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score %d", self.game.score];
+    self.messageLabel.text = [self.game.messenger lastObject];
     
     
 }
@@ -97,11 +101,22 @@
     return mutableAttributedString;
 }
 
+- (void) setFlipCount:(int)flipCount
+{
+    _flipCount = flipCount;
+    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
+}
+
+- (IBAction)dealCards:(UIButton *)sender {
+    _game = nil;
+    [self setFlipCount:0];
+    [self updateUI];
+}
 
 - (IBAction)flipCard:(UIButton *)sender
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    //self.flipCount++;
+    self.flipCount++;
     [self updateUI];
 }
 

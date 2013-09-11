@@ -16,6 +16,40 @@
 
 
 
+- (int)match:(NSArray *)otherCards
+{
+    int score = 0;
+    
+    if([otherCards count] >= 1) {
+        
+        int shapeMatches = 0;
+        int colorMatches = 0;
+        int rankMatches = 0;
+        int shadeMatches = 0;
+        
+        for(int i = 0; i < [otherCards count]; i++) {
+            SetCard *otherCard = otherCards[i];
+            
+            if([self.shade isEqualToString:otherCard.shade]) {
+                shadeMatches += 1;
+            } else if ([self.shape isEqualToString:otherCard.shape]) {
+                shapeMatches += 1;
+            } else if ([self.color isEqualToString:otherCard.color]) {
+                colorMatches += 1;
+            } else if (self.rank == otherCard.rank) {
+                rankMatches += 1;
+            }
+        }
+        
+        if(shadeMatches == 0 && colorMatches == 0 && rankMatches == 0 && shapeMatches == 0){
+            score += 10;
+        }
+        
+    }
+    return score;
+}
+
+
 
 - (NSString *)contents {
     return [NSString stringWithFormat:@"%@:%@:%@:%d", self.shape, self.color, self.shade, self.rank];
