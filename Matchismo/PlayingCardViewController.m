@@ -33,7 +33,7 @@
             playingCardView.rank = playingCard.rank;
             playingCardView.suit = playingCard.suit;
             
-            if(animate && playingCard.isFaceUp && !playingCard.isUnplayable) {
+            if(animate && ((playingCard.isFaceUp && !playingCard.isUnplayable) || (playingCardView.faceUp && !playingCard.isUnplayable))) {
                 [UIView transitionWithView:playingCardView
                                   duration:0.5
                                    options:UIViewAnimationOptionTransitionFlipFromLeft
