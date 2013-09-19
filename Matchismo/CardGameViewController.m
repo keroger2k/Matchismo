@@ -7,23 +7,47 @@
 //
 
 #import "CardGameViewController.h"
-#import "PlayingCardDeck.h"
 #import "TwoCardMatchingGame.h"
 #import "ThreeCardMatchingGame.h"
 #import "BaseMatchGame.h"
 
-@interface CardGameViewController ()
+@interface CardGameViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
 @property (nonatomic) int flipCount;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) BaseMatchGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameSelector;
+@property (weak, nonatomic) IBOutlet UICollectionView *cardCollectionView;
 
 @end
 
 @implementation CardGameViewController
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section
+{
+    return self.startingCardCount;
+}
+
+- (UICollectionViewCell * )collectionView:(UICollectionView *)collectionView
+                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayingCard" forIndexPath:indexPath];
+    Card *card = [self.game cardAtIndex:indexPath.item];
+    [self updateCell:cell usingCard:card animate:FALSE];
+    return cell;
+}
+
+- (void)updateCell:(UICollectionViewCell *)cell usingCard:(Card *)card animate:(BOOL)animate
+{
+    //abstract
+}
 
 - (id)init
 {
@@ -39,42 +63,31 @@
 {
     if(!_game) {
         if(self.gameSelector.selectedSegmentIndex == 0){
-        _game = [[TwoCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                         usingDeck:[[PlayingCardDeck alloc] init]];
+        _game = [[TwoCardMatchingGame alloc] initWithCardCount:self.startingCardCount
+                                                         usingDeck:[self createDeck]];
         } else {
-            _game = [[ThreeCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                         usingDeck:[[PlayingCardDeck alloc] init]];
+            _game = [[ThreeCardMatchingGame alloc] initWithCardCount:self.startingCardCount
+                                                         usingDeck:[self createDeck]];
         }
     }
     return _game;
 }
 
-- (void)setCardButtons:(NSArray *)cardButtons
-{
-    _cardButtons = cardButtons;
-    [self updateUI];
-}
+- (Deck *)createDeck { return nil; } //abstract
+
 
 - (void)updateUI
 {
-    for(UIButton *cardButton in self.cardButtons) {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
-        cardButton.selected = card.isFaceUp;
-        cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
-        if(card.isFaceUp){
-            [cardButton setImage:[[UIImage alloc] init] forState:UIControlStateNormal];
-        } else {
-            [cardButton setImage:[UIImage imageNamed:@"cardback.png"] forState:UIControlStateNormal];
-        }
+
+    for (UICollectionViewCell *cell in [self.cardCollectionView visibleCells]) {
+        NSIndexPath *indexPath = [self.cardCollectionView indexPathForCell:cell];
+        Card *card = [self.game cardAtIndex:indexPath.item];
+        [self updateCell:cell usingCard:card animate:TRUE];
     }
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score %d", self.game.score];
     self.messageLabel.text = [self.game.messenger lastObject];
-    
-    
+        
 }
 
 - (void) setFlipCount:(int)flipCount
@@ -95,11 +108,15 @@
     [self updateUI];
 }
 
-- (IBAction)flipCard:(UIButton *)sender
+- (IBAction)flipCard:(UITapGestureRecognizer *)gesture
 {
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.flipCount++;
-    [self updateUI];
+    CGPoint tapLocation = [gesture locationInView:self.cardCollectionView];
+    NSIndexPath *indexPath = [self.cardCollectionView indexPathForItemAtPoint:tapLocation];
+    if(indexPath) {
+        [self.game flipCardAtIndex:indexPath.item];
+        self.flipCount++;
+        [self updateUI];
+    }
 }
 
 @end
